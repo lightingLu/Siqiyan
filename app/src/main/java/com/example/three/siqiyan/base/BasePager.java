@@ -1,6 +1,8 @@
 package com.example.three.siqiyan.base;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
@@ -15,7 +17,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 /**
  * 主页下5个子页面的基类
  * 
- * @author Kevin
+ * @author three
  * 
  */
 public class BasePager {
@@ -32,6 +34,7 @@ public class BasePager {
 	public BasePager(Activity activity) {
 		mActivity = activity;
 		initViews();
+//		initData();
 	}
 
 	/**
@@ -41,8 +44,9 @@ public class BasePager {
 		mRootView = View.inflate(mActivity, R.layout.base_pager, null);
 
 		tvTitle = (TextView) mRootView.findViewById(R.id.tv_title);
-		flContent = (FrameLayout) mRootView.findViewById(R.id.fl_content);
+		flContent = (FrameLayout) mRootView.findViewById(R.id.fl_cc);
 		btnMenu = (ImageButton) mRootView.findViewById(R.id.btn_menu);
+
 
 		btnMenu.setOnClickListener(new OnClickListener() {
 

@@ -11,7 +11,7 @@ import com.example.three.siqiyan.base.BasePager;
 /**
  * 智慧服务
  * 
- * @author Kevin
+ * @author three
  * 
  */
 public class SmartServicePager extends BasePager {

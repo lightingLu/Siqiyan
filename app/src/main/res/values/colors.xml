@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="menu_bg_press">#cecece</color>
     <color name="menu_bg_normal">#f0f1f3</color>
+    <color name="rg_bg">#4079E6</color>
+
 </resources>

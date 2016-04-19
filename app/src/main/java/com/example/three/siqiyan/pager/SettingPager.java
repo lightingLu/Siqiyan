@@ -12,7 +12,7 @@ import com.example.three.siqiyan.base.BasePager;
 /**
  * 设置页面
  * 
- * @author Kevin
+ * @author three
  * 
  */
 public class SettingPager extends BasePager {

@@ -13,7 +13,7 @@
         <RelativeLayout
             android:id="@+id/photo_layout"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="80dp"
             android:background="@drawable/menu_icon_bg"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" >
@@ -21,19 +21,19 @@
             <ImageView
                 android:id="@+id/image_photo"
                 android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_height="70dp"
                 android:background="@mipmap/bg_photo"
                 android:padding="5dip" />
 
             <ImageView
                 android:id="@+id/image_over"
                 android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_height="70dp"
                 android:src="@mipmap/photo_over" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@id/image_photo"
                 android:gravity="center_vertical" >
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/user_name"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:singleLine="true"
                     android:text="@string/tv_user_email"
                     android:textColor="#7a7a7a"
@@ -70,7 +70,7 @@
         <RelativeLayout
             android:id="@+id/home_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@drawable/menu_item_bg"
             android:gravity="center_vertical"
             android:paddingLeft="15dp" >
@@ -78,7 +78,7 @@
             <ImageView
                 android:id="@+id/ic_home"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:scaleType="fitXY"
                 android:src="@mipmap/ic_home" />
@@ -105,7 +105,7 @@
         <RelativeLayout
             android:id="@+id/setting_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@drawable/menu_item_bg"
             android:gravity="center_vertical"
             android:paddingLeft="15dp" >
@@ -140,7 +140,7 @@
         <RelativeLayout
             android:id="@+id/theme_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@drawable/menu_item_bg"
             android:gravity="center_vertical"
             android:paddingLeft="15dp" >
@@ -175,7 +175,7 @@
         <RelativeLayout
             android:id="@+id/scans_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@drawable/menu_item_bg"
             android:gravity="center_vertical"
             android:paddingLeft="15dp" >
@@ -210,7 +210,7 @@
         <RelativeLayout
             android:id="@+id/feedback_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@drawable/menu_item_bg"
             android:gravity="center_vertical"
             android:paddingLeft="15dp" >
@@ -245,7 +245,7 @@
         <RelativeLayout
             android:id="@+id/updates_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@drawable/menu_item_bg"
             android:gravity="center_vertical"
             android:paddingLeft="15dp" >
@@ -280,7 +280,7 @@
         <RelativeLayout
             android:id="@+id/about_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@drawable/menu_item_bg"
             android:gravity="center_vertical"
             android:paddingLeft="15dp" >
@@ -315,7 +315,7 @@
         <RelativeLayout
             android:id="@+id/exit_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@drawable/menu_item_bg"
             android:gravity="center_vertical"
             android:paddingLeft="15dp" >

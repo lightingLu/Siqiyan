@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * fragment基类
  * 
- * @author Kevin
+ * @author three
  * 
  */
 public abstract class BaseFragment extends Fragment {
@@ -35,7 +35,6 @@ public abstract class BaseFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
 		initData();
 	}
 
