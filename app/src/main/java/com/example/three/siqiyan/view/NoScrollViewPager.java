@@ -7,8 +7,7 @@ import android.view.MotionEvent;
 
 /**
  * 不能左右划的ViewPager
- * 
- * @author three
+ *
  * 
  */
 public class NoScrollViewPager extends ViewPager {

@@ -5,14 +5,13 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.base.BasePager;
-import com.example.three.siqiyan.pager.GovAffairsPager;
-import com.example.three.siqiyan.pager.HomePager;
-import com.example.three.siqiyan.pager.NewsCenterPager;
-import com.example.three.siqiyan.pager.SmartServicePager;
+import com.example.three.siqiyan.pager.MePager;
+import com.example.three.siqiyan.pager.ZiXunPager;
+import com.example.three.siqiyan.pager.ZhiboPager;
+import com.example.three.siqiyan.pager.HangQingPager;
 
 import java.util.ArrayList;
 
@@ -39,10 +38,10 @@ public class ContentFragment extends BaseFragment {
     public void initData() {
         rgGroup.check(R.id.rb_home);// 默认勾选首页
         mPagerList = new ArrayList<>();
-		mPagerList.add(new HomePager(mActivity));
-		mPagerList.add(new NewsCenterPager(mActivity));
-		mPagerList.add(new SmartServicePager(mActivity));
-		mPagerList.add(new GovAffairsPager(mActivity));
+		mPagerList.add(new ZiXunPager(mActivity));
+		mPagerList.add(new ZhiboPager(mActivity));
+		mPagerList.add(new HangQingPager(mActivity));
+		mPagerList.add(new MePager(mActivity));
 
         mViewPager.setAdapter(new ContentAdapter());
         rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

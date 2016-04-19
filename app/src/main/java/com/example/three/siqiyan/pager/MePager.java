@@ -13,9 +13,9 @@ import com.example.three.siqiyan.base.BasePager;
  * @author three
  * 
  */
-public class GovAffairsPager extends BasePager{
+public class MePager extends BasePager{
 
-	public GovAffairsPager(Activity activity) {
+	public MePager(Activity activity) {
 		super(activity);
 	}
 

@@ -7,28 +7,27 @@ import android.widget.TextView;
 
 import com.example.three.siqiyan.base.BasePager;
 
-
 /**
- * 智慧服务
+ * 政务
  * 
  * @author three
  * 
  */
-public class SmartServicePager extends BasePager {
+public class ZhiboPager extends BasePager{
 
-	public SmartServicePager(Activity activity) {
+	public ZhiboPager(Activity activity) {
 		super(activity);
 	}
 
 	@Override
 	public void initData() {
-		System.out.println("初始化智慧服务数据....");
-
-		tvTitle.setText("行情");
+		System.out.println("初始化政务数据....");
+		
+		tvTitle.setText("直播");
 		setSlidingMenuEnable(true);// 打开侧边栏
 
 		TextView text = new TextView(mActivity);
-		text.setText("行情");
+		text.setText("直播");
 		text.setTextColor(Color.BLUE);
 		text.setTextSize(25);
 		text.setGravity(Gravity.CENTER);
