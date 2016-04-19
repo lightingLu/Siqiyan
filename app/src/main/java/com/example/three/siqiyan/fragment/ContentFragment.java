@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.base.BasePager;
@@ -16,9 +17,6 @@ import com.example.three.siqiyan.pager.SmartServicePager;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * 主页内容
  * 
@@ -28,10 +26,7 @@ import butterknife.ButterKnife;
 public class ContentFragment extends BaseFragment {
 
 	private RadioGroup rgGroup;
-
-
 	private ViewPager mViewPager;
-
 	private ArrayList<BasePager> mPagerList;
 	@Override
 	public View initViews() {
@@ -43,8 +38,12 @@ public class ContentFragment extends BaseFragment {
 
 	@Override
 	public void initData() {
-		super.initData();
+		rgGroup.check(R.id.rb_home);// 默认勾选首页
 		mPagerList = new ArrayList<>();
+//		 for (int i = 0; i < 5; i++) {
+//			HomePager pager = new HomePager(mActivity);
+//			mPagerList.add(pager);
+//		}
 		mPagerList.add(new HomePager(mActivity));
 		mPagerList.add(new NewsCenterPager(mActivity));
 		mPagerList.add(new SmartServicePager(mActivity));
@@ -55,8 +54,9 @@ public class ContentFragment extends BaseFragment {
 		rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				switch(checkedId){
+				switch (checkedId) {
 					case R.id.rb_home:
+						Toast.makeText(mActivity,"position"+checkedId,Toast.LENGTH_SHORT).show();
 						// mViewPager.setCurrentItem(0);// 设置当前页面
 						mViewPager.setCurrentItem(0, false);// 去掉切换页面的动画
 						break;
@@ -75,6 +75,22 @@ public class ContentFragment extends BaseFragment {
 					default:
 						break;
 				}
+			}
+		});
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			@Override
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+			}
+
+			@Override
+			public void onPageSelected(int position) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int state) {
+
 			}
 		});
 	}

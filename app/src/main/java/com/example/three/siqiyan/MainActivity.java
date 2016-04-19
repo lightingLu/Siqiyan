@@ -2,6 +2,7 @@ package com.example.three.siqiyan;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Window;
 
 import com.example.three.siqiyan.fragment.ContentFragment;
 import com.example.three.siqiyan.fragment.LeftMenuFragment;
@@ -15,6 +16,7 @@ public class MainActivity extends SlidingFragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         setBehindContentView(R.layout.left_menu);// 设置侧边栏
         SlidingMenu slidingMenu = getSlidingMenu();// 获取侧边栏对象
