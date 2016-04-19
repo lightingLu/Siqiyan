@@ -12,7 +12,6 @@ import com.example.three.siqiyan.base.BasePager;
 import com.example.three.siqiyan.pager.GovAffairsPager;
 import com.example.three.siqiyan.pager.HomePager;
 import com.example.three.siqiyan.pager.NewsCenterPager;
-import com.example.three.siqiyan.pager.SettingPager;
 import com.example.three.siqiyan.pager.SmartServicePager;
 
 import java.util.ArrayList;
@@ -51,7 +50,6 @@ public class ContentFragment extends BaseFragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_home:
-                        Toast.makeText(mActivity, "position" + checkedId, Toast.LENGTH_SHORT).show();
                         // mViewPager.setCurrentItem(0);// 设置当前页面
                         mViewPager.setCurrentItem(0, false);// 去掉切换页面的动画
                         break;

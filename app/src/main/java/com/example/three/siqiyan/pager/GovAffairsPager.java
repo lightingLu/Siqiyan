@@ -21,14 +21,13 @@ public class GovAffairsPager extends BasePager{
 
 	@Override
 	public void initData() {
-		System.out.println("初始化政务数据....");
-		
-		tvTitle.setText("人口管理");
+
+		tvTitle.setText("我");
 		setSlidingMenuEnable(true);// 打开侧边栏
 
 		TextView text = new TextView(mActivity);
-		text.setText("政务");
-		text.setTextColor(Color.RED);
+		text.setText("我");
+		text.setTextColor(Color.BLUE);
 		text.setTextSize(25);
 		text.setGravity(Gravity.CENTER);
 

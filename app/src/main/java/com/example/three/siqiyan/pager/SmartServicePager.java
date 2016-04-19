@@ -24,12 +24,12 @@ public class SmartServicePager extends BasePager {
 	public void initData() {
 		System.out.println("初始化智慧服务数据....");
 
-		tvTitle.setText("生活");
+		tvTitle.setText("行情");
 		setSlidingMenuEnable(true);// 打开侧边栏
 
 		TextView text = new TextView(mActivity);
-		text.setText("智慧服务");
-		text.setTextColor(Color.RED);
+		text.setText("行情");
+		text.setTextColor(Color.BLUE);
 		text.setTextSize(25);
 		text.setGravity(Gravity.CENTER);
 
