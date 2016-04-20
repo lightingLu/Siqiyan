@@ -78,10 +78,11 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/left_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
             android:padding="15dp">
 
             <ImageView
@@ -99,11 +100,14 @@
                 android:textColor="@color/text_light" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:background="@color/left_devider" />
+
         <RelativeLayout
+            android:id="@+id/left_suscribe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -125,11 +129,14 @@
                 android:textColor="@color/text_light" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:background="@color/left_devider" />
+
         <RelativeLayout
+            android:id="@+id/left_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -150,11 +157,14 @@
                 android:textColor="@color/text_light" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:background="@color/left_devider" />
+
         <RelativeLayout
+            android:id="@+id/left_push"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -175,6 +185,7 @@
                 android:textColor="@color/text_light" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
@@ -187,48 +198,51 @@
 
 
         </RelativeLayout>
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:background="@color/left_devider" />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:layout_gravity="bottom"
-            >
+            android:layout_margin="10dp">
+
             <TextView
-                android:text="推送"
-                android:padding="2dp"
-                android:textColor="@color/left_text_color_no"
-                android:drawableLeft="@mipmap/sidebar_push"
-                android:layout_marginLeft="15dp"
-                android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="设置"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:drawableLeft="@mipmap/sidebar_push"
                 android:padding="2dp"
-                android:textColor="@color/left_text_color_no"
+                android:text="推送"
+                android:textColor="@color/left_text_color_no" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:drawableLeft="@mipmap/sidebar_set"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="反馈"
                 android:padding="2dp"
-                android:textColor="@color/left_text_color_no"
-                android:drawableLeft="@mipmap/sidebar_fankui"
+                android:text="设置"
+                android:textColor="@color/left_text_color_no" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:drawableLeft="@mipmap/sidebar_fankui"
+                android:padding="2dp"
+                android:text="反馈"
+                android:textColor="@color/left_text_color_no" />
 
         </RelativeLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

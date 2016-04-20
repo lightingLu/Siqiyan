@@ -88,6 +88,16 @@ public class ContentFragment extends BaseFragment {
         mPagerList.get(0).initData();
     }
 
+    /**
+     * 获取咨讯这个pager
+     * @return
+     */
+    public ZiXunPager getZiXunPager() {
+        ZiXunPager pager = (ZiXunPager) mPagerList.get(0);
+        return pager;
+    }
+
+
     class ContentAdapter extends PagerAdapter {
 
         @Override
@@ -115,5 +125,12 @@ public class ContentFragment extends BaseFragment {
         }
 
 
+    }
+
+    /**
+     * 设置当前菜单页面
+     */
+    public void setCurrentPage() {
+        mViewPager.setCurrentItem(0, false);
     }
 }

@@ -1,4 +1,5 @@
 package com.example.three.siqiyan;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -36,6 +37,15 @@ public class MainActivity extends SlidingFragmentActivity {
         transaction.replace(R.id.ly_content, new ContentFragment(),
                 FRAGMENT_CONTENT);
         transaction.commit();// 提交事务
+    }
+
+    /**
+     * 获取contentfragment
+     */
+    public ContentFragment getContentFragment(){
+        FragmentManager fm = getSupportFragmentManager();
+        ContentFragment contentFragment = (ContentFragment) fm.findFragmentByTag(FRAGMENT_CONTENT);
+         return contentFragment;
     }
 
 }
