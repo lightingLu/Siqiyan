@@ -10,10 +10,8 @@ import com.example.three.siqiyan.base.BasePager;
 
 
 /**
- * 智慧服务
- * 
- * @author three
- * 
+ * 行情
+ * Created by Three on 2016/4/19.
  */
 public class HangQingPager extends BasePager {
 

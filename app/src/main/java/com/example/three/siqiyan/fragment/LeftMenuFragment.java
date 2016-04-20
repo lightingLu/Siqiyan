@@ -1,10 +1,6 @@
 package com.example.three.siqiyan.fragment;
-
-import android.content.DialogInterface;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.example.three.siqiyan.MainActivity;
 import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.pager.ZiXunPager;
@@ -12,11 +8,10 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * 侧边栏
- *
- * @author three
+ *Created by Three on 2016/4/18.
  */
 public class LeftMenuFragment extends BaseFragment implements View.OnClickListener {
-    private RelativeLayout leftHome, leftSuscribe, leftComment, leftPush;
+    private RelativeLayout leftHome, leftSuscribe, leftComment, leftPush;//中间的相对布局选项duixiang
     View view;
 
     @Override
@@ -26,11 +21,11 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
         leftSuscribe = (RelativeLayout) view.findViewById(R.id.left_suscribe);
         leftComment = (RelativeLayout) view.findViewById(R.id.left_comment);
         leftPush = (RelativeLayout) view.findViewById(R.id.left_push);
+        //设置监听事件
         leftHome.setOnClickListener(this);
         leftSuscribe.setOnClickListener(this);
         leftComment.setOnClickListener(this);
         leftPush.setOnClickListener(this);
-
         return view;
     }
 
@@ -66,7 +61,6 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
         setCurrentMenuPager(pos, title);
         toggleSlidingMenu();
     }
-
     /**
      * 设置当前菜单的页签详情页
      */

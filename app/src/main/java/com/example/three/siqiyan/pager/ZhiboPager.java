@@ -9,10 +9,8 @@ import android.widget.TextView;
 import com.example.three.siqiyan.base.BasePager;
 
 /**
- * 政务
- * 
- * @author three
- * 
+ * 直播
+ * Created by Three on 2016/4/19
  */
 public class ZhiboPager extends BasePager{
 

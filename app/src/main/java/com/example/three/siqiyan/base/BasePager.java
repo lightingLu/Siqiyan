@@ -16,8 +16,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * 主页下5个子页面的基类
- * 
- * @author three
+ *Created by Three on 2016/4/18.
  * 
  */
 public class BasePager {
@@ -34,7 +33,6 @@ public class BasePager {
 	public BasePager(Activity activity) {
 		mActivity = activity;
 		initViews();
-//		initData();
 	}
 
 	/**
@@ -46,8 +44,6 @@ public class BasePager {
 		tvTitle = (TextView) mRootView.findViewById(R.id.tv_title);
 		flContent = (FrameLayout) mRootView.findViewById(R.id.fl_cc);
 		btnMenu = (ImageButton) mRootView.findViewById(R.id.btn_menu);
-
-
 		btnMenu.setOnClickListener(new OnClickListener() {
 
 			@Override

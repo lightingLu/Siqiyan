@@ -17,8 +17,7 @@ import java.util.ArrayList;
 
 /**
  * 主页内容
- *
- * @author three
+ * Created by Three on 2016/4/18.
  */
 public class ContentFragment extends BaseFragment {
 
@@ -38,10 +37,10 @@ public class ContentFragment extends BaseFragment {
     public void initData() {
         rgGroup.check(R.id.rb_home);// 默认勾选首页
         mPagerList = new ArrayList<>();
-		mPagerList.add(new ZiXunPager(mActivity));
-		mPagerList.add(new ZhiboPager(mActivity));
-		mPagerList.add(new HangQingPager(mActivity));
-		mPagerList.add(new MePager(mActivity));
+        mPagerList.add(new ZiXunPager(mActivity));
+        mPagerList.add(new ZhiboPager(mActivity));
+        mPagerList.add(new HangQingPager(mActivity));
+        mPagerList.add(new MePager(mActivity));
 
         mViewPager.setAdapter(new ContentAdapter());
         rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -73,10 +72,10 @@ public class ContentFragment extends BaseFragment {
 
             }
 
+            //当页面被选中的时候
             @Override
             public void onPageSelected(int position) {
-                mPagerList.get(position).initData();
-
+                mPagerList.get(position).initData();//当前页面加载数据
             }
 
             @Override
@@ -85,21 +84,21 @@ public class ContentFragment extends BaseFragment {
             }
         });
 
-        mPagerList.get(0).initData();
+        mPagerList.get(0).initData();//默认主页为第一个，资讯
     }
 
     /**
      * 获取咨讯这个pager
-     * @return
+     *
+     * @return 资讯页面
      */
     public ZiXunPager getZiXunPager() {
         ZiXunPager pager = (ZiXunPager) mPagerList.get(0);
         return pager;
     }
 
-
+//为viewpager写适配器
     class ContentAdapter extends PagerAdapter {
-
         @Override
         public int getCount() {
             return mPagerList.size();
@@ -121,10 +120,7 @@ public class ContentFragment extends BaseFragment {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
-
         }
-
-
     }
 
     /**

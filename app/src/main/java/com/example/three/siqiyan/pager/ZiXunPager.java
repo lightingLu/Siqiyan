@@ -17,9 +17,8 @@ import java.util.ArrayList;
 
 
 /**
- * 首页实现
- *
- * @author three
+ * 资讯首页
+ *Created by Three on 2016/4/19.
  */
 public class ZiXunPager extends BasePager {
     private ArrayList<BaseMenuDetailPager> pagerList;
@@ -33,6 +32,7 @@ public class ZiXunPager extends BasePager {
         tvTitle.setText("华尔街见闻");// 修改标题
         btnMenu.setVisibility(View.VISIBLE);// 隐藏菜单按钮
         setSlidingMenuEnable(true);//关闭侧边栏
+        flContent.removeAllViews();//清除先前的绘图
         addMenuPager();
         TextView text = new TextView(mActivity);
         text.setText("华尔街见闻");

@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 
 /**
  * fragment基类
- * 
- * @author three
- * 
+ * Created by Three on 2016/4/18.
  */
 public abstract class BaseFragment extends Fragment {
 
