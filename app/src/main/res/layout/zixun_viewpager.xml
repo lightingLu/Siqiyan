@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+    <ImageView
+        android:id="@+id/vp_image"
+        android:layout_width="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_height="170dp"
+        android:background="@mipmap/holder_special"/>
+    <TextView
+        android:id="@+id/vp_title"
+        android:padding="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今天你吃饭了吗"/>
+
+</RelativeLayout>

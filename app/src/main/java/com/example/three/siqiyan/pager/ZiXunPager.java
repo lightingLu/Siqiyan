@@ -1,9 +1,15 @@
 package com.example.three.siqiyan.pager;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,7 +48,9 @@ public class ZiXunPager extends BasePager {
     private ZixunAPI zixunAPI;
     private LinearLayout ll;
     private ListView listView;
+    private ViewPager viewPager;
     private List<NewsInfo.NewslistBean> newslist;
+    private List<NewsInfo.TopicBean> topic;
 
     public ZiXunPager(Activity activity) {
         super(activity);
@@ -60,7 +68,10 @@ public class ZiXunPager extends BasePager {
         service = zixunAPI.getService();
         //定义listview
         View v = View.inflate(mActivity, R.layout.zixun_listview, null);//找到listview所在的布局
+        View headview = View.inflate(mActivity, R.layout.headview, null);//找到viewpager所在的布局
+        viewPager = (ViewPager) headview.findViewById(R.id.zixun_viewpager);
         listView = (ListView) v.findViewById(R.id.zixun_listview);
+        listView.addHeaderView(headview);//给listview添加头布局
         flContent.addView(v);//给framelayout添加视图
         getJsonResult();//请求网络数据
 
@@ -100,19 +111,26 @@ public class ZiXunPager extends BasePager {
                     public void onCompleted() {
                         Log.v("=======III===", "完成");
                     }
+
                     @Override
                     public void onError(Throwable e) {
                         Toast.makeText(mActivity, "请检查您的网络", Toast.LENGTH_SHORT).show();
                     }
+
                     @Override
                     public void onNext(NewsInfo newsInfo) {
                         newslist = newsInfo.getNewslist();
+                        topic = newsInfo.getTopic();
+                        viewPager.setAdapter(new TopAdapter());
                         listView.setAdapter(new ZiXunAdapter());//给listview设置适配器
+
                     }
                 });
     }
 
-
+    /**
+     * listview的适配器
+     */
     class ZiXunAdapter extends BaseAdapter {
 
         @Override
@@ -166,7 +184,47 @@ public class ZiXunPager extends BasePager {
     }
 
     /**
+     * viewpage适配器
+     */
+    class TopAdapter extends PagerAdapter {
+
+
+        @Override
+        public int getCount() {
+            return topic.size();
+        }
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View view = View.inflate(mActivity,R.layout.zixun_viewpager,null);
+            ImageView imageView = (ImageView) view.findViewById(R.id.vp_image);
+            TextView title = (TextView) view.findViewById(R.id.vp_title);
+            title.setText(topic.get(position).getToptitle());
+            //Glide加载图片
+            Glide.with(mActivity)
+                    .load(topic.get(position).getTopimage())
+//                    .override(dip2px(), dip2px(70))  //重新绘制图片大小
+                    .placeholder(R.mipmap.holder_special)  //默认图片和加载错误的图片
+                    .error(R.mipmap.holder_special)
+                    .into(imageView);
+            container.addView(view);
+            return view;
+        }
+
+
+    }
+
+    /**
      * dp转px
+     *
      * @param dip
      * @return
      */
