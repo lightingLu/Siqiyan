@@ -8,6 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -245,6 +246,7 @@ public class ZiXunPager extends BasePager {
                     .error(R.mipmap.holder_special)
                     .into(imageView);
             container.addView(view);
+            imageView.setOnTouchListener(new ImageTouchListener() );//给imagview设置触摸监听事件，轮播条的触摸监听
             return view;
         }
 
@@ -260,5 +262,29 @@ public class ZiXunPager extends BasePager {
     public int dip2px(int dip) {
         float scale = mActivity.getResources().getDisplayMetrics().density;
         return (int) (dip * scale + 0.5f);
+    }
+
+    /**
+     * viewpager 的Imageview 的监听器,处理轮播条的触摸监听
+     */
+    class  ImageTouchListener implements View.OnTouchListener{
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    mHandler.removeCallbacksAndMessages(null);//删除handler中的消息
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                    mHandler.sendEmptyMessageDelayed(0, 3000);//3秒后启动
+                    break;
+                case MotionEvent.ACTION_UP:
+                    mHandler.sendEmptyMessageDelayed(0, 3000);
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
     }
 }
