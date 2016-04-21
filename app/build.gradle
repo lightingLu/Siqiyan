@@ -37,4 +37,5 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
     compile 'io.reactivex:rxjava:1.0.10'
     compile project(':slidingMenuLibrary')
+    compile project(':viewpagerIndacatelibrary')
 }

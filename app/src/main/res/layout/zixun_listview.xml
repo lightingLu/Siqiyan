@@ -3,17 +3,9 @@
     android:id="@+id/zixun_lt"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--<com.example.three.siqiyan.view.HorizontalViewPager-->
-        <!--android:id="@+id/zixun_viewpager"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="200dp">-->
-    <!--</com.example.three.siqiyan.view.HorizontalViewPager>-->
-
     <ListView
-
         android:id="@+id/zixun_listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </ListView>
-    <!--android:layout_below="@+id/zixun_viewpager"-->
 </RelativeLayout>

@@ -2,6 +2,8 @@ package com.example.three.siqiyan.pager;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -28,6 +30,7 @@ import com.example.three.siqiyan.menupager.CommentMenuPager;
 import com.example.three.siqiyan.menupager.HomeMenuPager;
 import com.example.three.siqiyan.menupager.PushMenuPager;
 import com.example.three.siqiyan.menupager.SubscribeMenuPager;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +54,8 @@ public class ZiXunPager extends BasePager {
     private ViewPager viewPager;
     private List<NewsInfo.NewslistBean> newslist;
     private List<NewsInfo.TopicBean> topic;
+    private CirclePageIndicator indicator;
+    private Handler mHandler;
 
     public ZiXunPager(Activity activity) {
         super(activity);
@@ -69,7 +74,10 @@ public class ZiXunPager extends BasePager {
         //定义listview
         View v = View.inflate(mActivity, R.layout.zixun_listview, null);//找到listview所在的布局
         View headview = View.inflate(mActivity, R.layout.headview, null);//找到viewpager所在的布局
+        indicator = (CirclePageIndicator) headview.findViewById(R.id.indicator);
+
         viewPager = (ViewPager) headview.findViewById(R.id.zixun_viewpager);
+
         listView = (ListView) v.findViewById(R.id.zixun_listview);
         listView.addHeaderView(headview);//给listview添加头布局
         flContent.addView(v);//给framelayout添加视图
@@ -122,7 +130,26 @@ public class ZiXunPager extends BasePager {
                         newslist = newsInfo.getNewslist();
                         topic = newsInfo.getTopic();
                         viewPager.setAdapter(new TopAdapter());
+                        indicator.setViewPager(viewPager);//indacater和viewpager绑定，此方法必须在viewpager设置adapter之后调用
+                        indicator.setSnap(true);//快照显示，跟随viewpager跳动
                         listView.setAdapter(new ZiXunAdapter());//给listview设置适配器
+                        //给viewpage设置轮播事件
+                        if (mHandler==null){
+                            mHandler = new Handler(){
+                                @Override
+                                public void handleMessage(Message msg) {
+                                    int currentItem = viewPager.getCurrentItem();
+                                    if (currentItem<topic.size()-1){
+                                        currentItem++;
+                                    }else {
+                                        currentItem = 0;//回到初始位置
+                                    }
+                                    viewPager.setCurrentItem(currentItem);//设置当前条目
+                                    mHandler.sendEmptyMessageDelayed(0,3000);//延时3秒后发消息，形成循环
+                                };
+                            };
+                            mHandler.sendEmptyMessageDelayed(0, 3000);// 延时3秒后发消息
+                        }
 
                     }
                 });
@@ -193,6 +220,7 @@ public class ZiXunPager extends BasePager {
         public int getCount() {
             return topic.size();
         }
+
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
@@ -202,9 +230,10 @@ public class ZiXunPager extends BasePager {
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
+
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            View view = View.inflate(mActivity,R.layout.zixun_viewpager,null);
+            View view = View.inflate(mActivity, R.layout.zixun_viewpager, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.vp_image);
             TextView title = (TextView) view.findViewById(R.id.vp_title);
             title.setText(topic.get(position).getToptitle());
