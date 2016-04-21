@@ -1,12 +1,18 @@
 package com.example.three.siqiyan.pager;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.base.BaseMenuDetailPager;
 import com.example.three.siqiyan.base.BasePager;
 import com.example.three.siqiyan.bean.NewsInfo;
@@ -32,10 +38,11 @@ import rx.schedulers.Schedulers;
  */
 public class ZiXunPager extends BasePager {
     private ArrayList<BaseMenuDetailPager> pagerList;
-    private List<NewsInfo> newsInfoList = new ArrayList<>();
     private HService service;
     private ZixunAPI zixunAPI;
-
+    private LinearLayout ll;
+    private ListView listView;
+    private List<NewsInfo.NewslistBean> newslist;
 
     public ZiXunPager(Activity activity) {
         super(activity);
@@ -48,19 +55,15 @@ public class ZiXunPager extends BasePager {
         setSlidingMenuEnable(true);//关闭侧边栏
         flContent.removeAllViews();//清除先前的绘图
         addMenuPager();
+        //获取网络请求接口
         zixunAPI = ZixunAPI.getAPI();
         service = zixunAPI.getService();
+        //定义listview
+        View v = View.inflate(mActivity, R.layout.zixun_listview, null);//找到listview所在的布局
+        listView = (ListView) v.findViewById(R.id.zixun_listview);
+        flContent.addView(v);//给framelayout添加视图
+        getJsonResult();//请求网络数据
 
-
-        TextView text = new TextView(mActivity);
-        text.setText("华尔街见闻");
-        text.setTextColor(Color.BLUE);
-        text.setTextSize(25);
-        text.setGravity(Gravity.CENTER);
-
-        // 向FrameLayout中动态添加布局
-        flContent.addView(text);
-        getJsonResult();
     }
 
     /**
@@ -97,18 +100,78 @@ public class ZiXunPager extends BasePager {
                     public void onCompleted() {
                         Log.v("=======III===", "完成");
                     }
-
                     @Override
                     public void onError(Throwable e) {
-                        Log.v("=======III===", "出错");
+                        Toast.makeText(mActivity, "请检查您的网络", Toast.LENGTH_SHORT).show();
                     }
-
                     @Override
                     public void onNext(NewsInfo newsInfo) {
-                        Log.v("=======III===", "ZHIXING");
+                        newslist = newsInfo.getNewslist();
+                        listView.setAdapter(new ZiXunAdapter());//给listview设置适配器
                     }
                 });
     }
 
 
+    class ZiXunAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return newslist.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return newslist.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            View vv;
+            ViewHolder holder;
+            if (view == null) {
+                vv = View.inflate(mActivity, R.layout.zixun_list_item, null);
+                holder = new ViewHolder();
+                holder.title = (TextView) vv.findViewById(R.id.list_title);
+                holder.time = (TextView) vv.findViewById(R.id.list_time);
+                holder.imageView = (ImageView) vv.findViewById(R.id.list_img);
+                vv.setTag(holder);
+            } else {
+                vv = view;
+                holder = (ViewHolder) vv.getTag();
+            }
+            holder.title.setText(newslist.get(i).getTitle());
+            holder.time.setText(newslist.get(i).getPubdate());
+            //Glide加载图片
+            Glide.with(mActivity)
+                    .load(newslist.get(i).getListimage())
+                    .override(dip2px(100), dip2px(70))  //重新绘制图片大小
+                    .placeholder(R.mipmap.holder_image)  //默认图片和加载错误的图片
+                    .error(R.mipmap.holder_image)
+                    .into(holder.imageView);
+            return vv;
+        }
+    }
+
+    static class ViewHolder {
+        TextView title;
+        TextView time;
+        ImageView imageView;
+
+    }
+
+    /**
+     * dp转px
+     * @param dip
+     * @return
+     */
+    public int dip2px(int dip) {
+        float scale = mActivity.getResources().getDisplayMetrics().density;
+        return (int) (dip * scale + 0.5f);
+    }
 }
