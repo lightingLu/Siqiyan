@@ -12,5 +12,6 @@
     <color name="left_text_color_no">#8A8A8D</color>
     <color name="left_devider">#4A4A4A</color>
     <color name="text_light">#FFFFFF</color>
+    <color name="me_top_color">#777777</color>
 
 </resources>
