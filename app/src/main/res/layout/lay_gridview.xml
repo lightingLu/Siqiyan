@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/zixun_lt"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.example.three.siqiyan.view.RefreshLis
-        android:id="@+id/zixun_listview"
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </com.example.three.siqiyan.view.RefreshLis>
+        android:layout_height="match_parent" />
+
 </RelativeLayout>

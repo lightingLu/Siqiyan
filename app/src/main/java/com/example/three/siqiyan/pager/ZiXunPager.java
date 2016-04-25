@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -35,6 +36,8 @@ import com.example.three.siqiyan.menupager.CommentMenuPager;
 import com.example.three.siqiyan.menupager.HomeMenuPager;
 import com.example.three.siqiyan.menupager.PushMenuPager;
 import com.example.three.siqiyan.menupager.SubscribeMenuPager;
+import com.example.three.siqiyan.view.RefreshLis;
+import com.example.three.siqiyan.view.RefreshListview;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -51,22 +54,32 @@ import rx.schedulers.Schedulers;
  */
 public class ZiXunPager extends BasePager {
     private ArrayList<BaseMenuDetailPager> pagerList;
+
     private HService service;
     private ZixunAPI zixunAPI;
     private LinearLayout ll;
-    private ListView listView;
+    private RefreshLis listView;
+
     private ViewPager viewPager;
     private List<NewsInfo.NewslistBean> newslist;
     private List<NewsInfo.TopicBean> topic;
     private CirclePageIndicator indicator;
     private Handler mHandler;
-
+     private  ZiXunAdapter adapter = new ZiXunAdapter();
+    private Handler handler = new Handler(){
+        public void handleMessage(android.os.Message msg) {
+            //更新UI
+            adapter.notifyDataSetChanged();
+            listView.completeRefresh();
+        };
+    };
     public ZiXunPager(Activity activity) {
         super(activity);
     }
 
     @Override
     public void initData() {
+
         tvTitle.setText("华尔街见闻");// 修改标题
         btnMenu.setVisibility(View.VISIBLE);// 隐藏菜单按钮
         setSlidingMenuEnable(true);//关闭侧边栏
@@ -80,21 +93,26 @@ public class ZiXunPager extends BasePager {
         View headview = View.inflate(mActivity, R.layout.headview, null);//找到viewpager所在的布局
         indicator = (CirclePageIndicator) headview.findViewById(R.id.indicator);
         viewPager = (ViewPager) headview.findViewById(R.id.zixun_viewpager);
-        listView = (ListView) v.findViewById(R.id.zixun_listview);
+        listView = (RefreshLis) v.findViewById(R.id.zixun_listview);
+         boolean isTouche = listView.isTouchevent;
         listView.addHeaderView(headview);//给listview添加头布局
         flContent.addView(v);//给framelayout添加视图
         getJsonResult();//请求网络数据
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                changeReadState(view);
-                Intent intent = new Intent(mActivity,DetailActivity.class);
-                intent.putExtra("url", newslist.get(position - 1).getUrl());
-                mActivity.startActivity(intent);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    changeReadState(view);
+
+                    Intent intent = new Intent(mActivity, DetailActivity.class);
+                    intent.putExtra("url", newslist.get(position - 2).getUrl());
+                    mActivity.startActivity(intent);
+                }
+            });
 
 
-            }
-        });
+
+
     }
 
     /**
@@ -145,7 +163,18 @@ public class ZiXunPager extends BasePager {
                         indicator.setViewPager(viewPager);//indacater和viewpager绑定，此方法必须在viewpager设置adapter之后调用
                         indicator.setSnap(true);//快照显示，跟随viewpager跳动
                         listView.setAdapter(new ZiXunAdapter());//给listview设置适配器
+                        listView.setOnRefreshListener(new RefreshLis.OnRefreshListener() {
+                            @Override
+                            public void onPullRefresh() {
+                                //请求互联网数据数据
+                                requestDataFromServer(false);
+                            }
 
+                            @Override
+                            public void onLoadingMore() {
+                                requestDataFromServer(true);
+                            }
+                        });
                         //给viewpage设置轮播事件
                         if (mHandler == null) {
                             mHandler = new Handler() {
@@ -168,7 +197,26 @@ public class ZiXunPager extends BasePager {
                     }
                 });
     }
+    /**
+     * 模拟向服务器请求数据
+     */
+    private void requestDataFromServer(final boolean isLoadingMore){
+        new Thread(){
+            public void run() {
+                SystemClock.sleep(3000);//模拟请求服务器的一个时间长度
+                if(isLoadingMore){//加载下拉刷新的数据
+//                    listView.add("加载更多的数据-1");
+//                    listView.add("加载更多的数据-2");
+//                    listView.add("加载更多的数据-3");
+                }else {//加载上拉加载
+//                    list.add(0, "下拉刷新的数据");
+                }
 
+                //在UI线程更新UI
+                handler.sendEmptyMessage(0);
+            };
+        }.start();
+    }
     /**
      * listview的适配器
      */
@@ -244,7 +292,7 @@ public class ZiXunPager extends BasePager {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, final int position) {
             View view = View.inflate(mActivity, R.layout.zixun_viewpager, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.vp_image);
             TextView title = (TextView) view.findViewById(R.id.vp_title);
@@ -257,7 +305,16 @@ public class ZiXunPager extends BasePager {
                     .error(R.mipmap.holder_special)
                     .into(imageView);
             container.addView(view);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mActivity, DetailActivity.class);
+                    intent.putExtra("url", topic.get(position).getTopurl());
+                    mActivity.startActivity(intent);
+                }
+            });
             imageView.setOnTouchListener(new ImageTouchListener());//给imagview设置触摸监听事件，轮播条的触摸监听
+
             return view;
         }
     }
@@ -289,15 +346,16 @@ public class ZiXunPager extends BasePager {
                     break;
                 case MotionEvent.ACTION_UP:
                     mHandler.sendEmptyMessageDelayed(0, 3000);
-                    break;
+                    return true;
+//                    break;
                 default:
                     break;
             }
             return true;
         }
     }
+
     /**
-     *
      * 改变已读新闻的颜色
      */
     private void changeReadState(View view) {
