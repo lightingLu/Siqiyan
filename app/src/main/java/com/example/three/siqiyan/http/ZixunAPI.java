@@ -16,7 +16,7 @@ public class ZixunAPI {
     /**
      * Host 请求
      */
-    public static final String BASE_URL = "http://siqiyan.applinzi.com";
+    public static final String BASE_URL = "http://android.hicp.net";
     /**
      * 单例模式，获取api
      */

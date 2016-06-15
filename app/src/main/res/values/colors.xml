@@ -13,5 +13,8 @@
     <color name="left_devider">#4A4A4A</color>
     <color name="text_light">#FFFFFF</color>
     <color name="me_top_color">#777777</color>
+    <color name="view_line">#DBDBDC</color>
+    <color name="yanzheng_text">#F6A45C</color>
+    <color name="btn_co">#80A0DF</color>
 
 </resources>

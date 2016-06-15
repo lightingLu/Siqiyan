@@ -50,6 +50,7 @@
             android:layout_marginBottom="15dp">
 
             <TextView
+                android:id="@+id/fast_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -60,6 +61,7 @@
                 android:textColor="@color/left_text_color" />
 
             <TextView
+                android:id="@+id/fast_loginup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
