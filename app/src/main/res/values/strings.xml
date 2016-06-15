@@ -13,6 +13,4 @@
     <string name="tv_about">关于</string>
     <string name="tv_exit">退出</string>
     <string name="app_detail_introduction">简介</string>
-    <string name="title_activity_login_in">LoginInActivity</string>
-    <string name="title_activity_login_up">LoginUpActivity</string>
 </resources>

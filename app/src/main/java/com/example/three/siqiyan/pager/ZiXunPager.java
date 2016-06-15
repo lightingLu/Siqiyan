@@ -9,18 +9,23 @@ import android.os.SystemClock;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.three.siqiyan.DetailActivity;
+import com.example.three.siqiyan.MainActivity;
 import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.base.BaseMenuDetailPager;
 import com.example.three.siqiyan.base.BasePager;
@@ -32,6 +37,7 @@ import com.example.three.siqiyan.menupager.HomeMenuPager;
 import com.example.three.siqiyan.menupager.PushMenuPager;
 import com.example.three.siqiyan.menupager.SubscribeMenuPager;
 import com.example.three.siqiyan.view.RefreshLis;
+import com.example.three.siqiyan.view.RefreshListview;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -55,8 +61,8 @@ public class ZiXunPager extends BasePager {
     private RefreshLis listView;
 
     private ViewPager viewPager;
-    private List<NewsInfo.NewslistBean> newslist;//新闻数据
-    private List<NewsInfo.TopicBean> topic;//viewpager数据
+    private List<NewsInfo.NewslistBean> newslist;
+    private List<NewsInfo.TopicBean> topic;
     private CirclePageIndicator indicator;
     private Handler mHandler;
      private  ZiXunAdapter adapter = new ZiXunAdapter();
@@ -151,8 +157,6 @@ public class ZiXunPager extends BasePager {
 
                     @Override
                     public void onNext(NewsInfo newsInfo) {
-
-                        saveLocal(newsInfo.toString());
                         newslist = newsInfo.getNewslist();
                         topic = newsInfo.getTopic();
                         viewPager.setAdapter(new TopAdapter());
@@ -193,28 +197,19 @@ public class ZiXunPager extends BasePager {
                     }
                 });
     }
-
-    /**
-     * 保存数据到本地
-     * @param s
-     */
-    private void saveLocal(String s) {
-
-
-
-    }
-
     /**
      * 模拟向服务器请求数据
      */
     private void requestDataFromServer(final boolean isLoadingMore){
         new Thread(){
             public void run() {
-                SystemClock.sleep(2000);//模拟请求服务器的一个时间长度
+                SystemClock.sleep(3000);//模拟请求服务器的一个时间长度
                 if(isLoadingMore){//加载下拉刷新的数据
-
+//                    listView.add("加载更多的数据-1");
+//                    listView.add("加载更多的数据-2");
+//                    listView.add("加载更多的数据-3");
                 }else {//加载上拉加载
-
+//                    list.add(0, "下拉刷新的数据");
                 }
 
                 //在UI线程更新UI

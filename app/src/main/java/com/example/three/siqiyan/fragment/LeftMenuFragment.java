@@ -1,13 +1,6 @@
 package com.example.three.siqiyan.fragment;
-
-import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.three.siqiyan.LoginInActivity;
-import com.example.three.siqiyan.LoginUpActivity;
 import com.example.three.siqiyan.MainActivity;
 import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.pager.ZiXunPager;
@@ -19,8 +12,6 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
  */
 public class LeftMenuFragment extends BaseFragment implements View.OnClickListener {
     private RelativeLayout leftHome, leftSuscribe, leftComment, leftPush;//中间的相对布局选项duixiang
-    private TextView fastLogin,fastLoginUp;
-
     View view;
 
     @Override
@@ -30,15 +21,11 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
         leftSuscribe = (RelativeLayout) view.findViewById(R.id.left_suscribe);
         leftComment = (RelativeLayout) view.findViewById(R.id.left_comment);
         leftPush = (RelativeLayout) view.findViewById(R.id.left_push);
-        fastLogin = (TextView) view.findViewById(R.id.fast_login);
-        fastLoginUp = (TextView) view.findViewById(R.id.fast_loginup);
         //设置监听事件
         leftHome.setOnClickListener(this);
         leftSuscribe.setOnClickListener(this);
         leftComment.setOnClickListener(this);
         leftPush.setOnClickListener(this);
-        fastLoginUp.setOnClickListener(this);
-        fastLogin.setOnClickListener(this);
         return view;
     }
 
@@ -61,18 +48,6 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
                 break;
             case R.id.left_push:
                 setMenuPager(3,"历史推送");
-                break;
-            case R.id.fast_login:
-                Toast.makeText(mActivity,"注册",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mActivity, LoginInActivity.class);
-                startActivity(intent);
-                toggleSlidingMenu();
-                break;
-            case R.id.fast_loginup:
-                Toast.makeText(mActivity,"登录",Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(mActivity, LoginUpActivity.class);
-                startActivity(intent2);
-                toggleSlidingMenu();
                 break;
         }
     }
