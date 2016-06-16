@@ -3,8 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Siqiyan.iml" filepath="$PROJECT_DIR$/Siqiyan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Siqiyan.iml" filepath="$PROJECT_DIR$/Siqiyan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/slidingMenuLibrary/slidingMenuLibrary.iml" filepath="$PROJECT_DIR$/slidingMenuLibrary/slidingMenuLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/slidingMenuLibrary/slidingMenuLibrary.iml" filepath="$PROJECT_DIR$/slidingMenuLibrary/slidingMenuLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewpagerIndacatelibrary/viewpagerIndacatelibrary.iml" filepath="$PROJECT_DIR$/viewpagerIndacatelibrary/viewpagerIndacatelibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/viewpagerIndacatelibrary/viewpagerIndacatelibrary.iml" filepath="$PROJECT_DIR$/viewpagerIndacatelibrary/viewpagerIndacatelibrary.iml" />
     </modules>
   </component>

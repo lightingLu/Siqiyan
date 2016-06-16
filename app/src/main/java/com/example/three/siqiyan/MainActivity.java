@@ -44,7 +44,7 @@ public class MainActivity extends SlidingFragmentActivity {
     public ContentFragment getContentFragment(){
         FragmentManager fm = getSupportFragmentManager();
         ContentFragment contentFragment = (ContentFragment) fm.findFragmentByTag(FRAGMENT_CONTENT);
-         return contentFragment;
+        return contentFragment;
     }
 }
 
