@@ -38,4 +38,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.0.10'
     compile project(':slidingMenuLibrary')
     compile project(':viewpagerIndacatelibrary')
+    compile files('src/libs/BmobSDK_V3.4.7_0527.jar')
 }
