@@ -18,6 +18,7 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		mHelper = new SlidingActivityHelper(this);
 		mHelper.onCreate(savedInstanceState);
 	}
