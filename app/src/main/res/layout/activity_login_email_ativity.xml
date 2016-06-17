@@ -109,6 +109,7 @@
             android:textSize="16dp"
             android:layout_marginLeft="20dp"
             android:background="@null"
+            android:password="true"
             android:hint="密码"
             android:paddingBottom="5dip"
             android:padding="10dp"

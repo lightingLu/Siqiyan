@@ -63,13 +63,11 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
                 setMenuPager(3,"历史推送");
                 break;
             case R.id.fast_login:
-                Toast.makeText(mActivity,"注册",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mActivity, LoginInActivity.class);
                 startActivity(intent);
                 toggleSlidingMenu();
                 break;
             case R.id.fast_loginup:
-                Toast.makeText(mActivity,"登录",Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(mActivity, LoginUpActivity.class);
                 startActivity(intent2);
                 toggleSlidingMenu();

@@ -66,7 +66,6 @@
             <EditText
                 android:layout_alignParentLeft="true"
                 android:id="@+id/loginup_username"
-
                 style="?android:attr/textViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -86,7 +85,7 @@
             android:background="@color/view_line" />
 
         <EditText
-            android:id="@+id/login_yanzheng"
+            android:id="@+id/loginup_password"
             style="?android:attr/textViewStyle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -108,7 +107,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/login_login"
+            android:id="@+id/loginup_login"
             android:text="登录"
             android:textSize="16dp"
             android:background="@drawable/shape"

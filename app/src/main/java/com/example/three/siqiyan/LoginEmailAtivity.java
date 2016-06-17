@@ -19,13 +19,8 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 
 public class LoginEmailAtivity extends AppCompatActivity implements View.OnClickListener {
-
-    @Bind(R.id.loginemail_title)
-    TextView loginemailTitle;
     @Bind(R.id.loginemail_back)
     ImageButton loginemailBack;
-    @Bind(R.id.btn_notifacation)
-    ImageButton btnNotifacation;
     @Bind(R.id.loginemail_username)
     EditText loginemailUsername;
     @Bind(R.id.loginemail_email)
@@ -46,11 +41,8 @@ public class LoginEmailAtivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_login_email_ativity);
         ButterKnife.bind(this);
         user = new BmobUser();
-
         loginemailBack.setOnClickListener(this);
         loginemailLogin.setOnClickListener(this);
-
-
     }
 
     //操作bomb,保存用户数据
@@ -61,7 +53,9 @@ public class LoginEmailAtivity extends AppCompatActivity implements View.OnClick
         user.signUp(this, new SaveListener() {
             @Override
             public void onSuccess() {
-                Toast.makeText(LoginEmailAtivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginEmailAtivity.this, "注册成功,请去邮箱激活！", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginEmailAtivity.this, LoginUpActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -69,7 +63,6 @@ public class LoginEmailAtivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(LoginEmailAtivity.this, "注册失败", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     //获取用户输入信息
@@ -79,12 +72,14 @@ public class LoginEmailAtivity extends AppCompatActivity implements View.OnClick
         email = loginemailEmail.getText().toString().trim();
 
     }
+
     //清除用户数据
     private void cleanInfo() {
         loginemailUsername.setText("");
         loginemailEmail.setText("");
         loginemailPassword.setText("");
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -99,8 +94,4 @@ public class LoginEmailAtivity extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
-
-
-
-
 }
