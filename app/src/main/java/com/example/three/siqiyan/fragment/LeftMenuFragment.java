@@ -65,12 +65,12 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
             case R.id.fast_login:
                 Intent intent = new Intent(mActivity, LoginInActivity.class);
                 startActivity(intent);
-                toggleSlidingMenu();
+//                toggleSlidingMenu();//如果注册途中返回则显示有侧边栏
                 break;
             case R.id.fast_loginup:
                 Intent intent2 = new Intent(mActivity, LoginUpActivity.class);
                 startActivity(intent2);
-                toggleSlidingMenu();
+//                toggleSlidingMenu();
                 break;
         }
     }

@@ -86,7 +86,8 @@ public class LoginUpActivity extends AppCompatActivity implements View.OnClickLi
                 BmobUser.resetPasswordByEmail(this, userLoginEmail, new ResetPasswordByEmailListener() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(LoginUpActivity.this, "请求成功，请到" + userLoginEmail+ "邮箱进行密码重置操作", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginUpActivity.this, "请求成功，请到" + userLoginEmail+ "邮箱进行密码修改", Toast.LENGTH_LONG).show();
+                        dialog.text_email.setText("");
                     }
                     @Override
                     public void onFailure(int i, String s) {
