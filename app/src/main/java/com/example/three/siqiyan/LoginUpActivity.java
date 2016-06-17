@@ -111,9 +111,10 @@ public class LoginUpActivity extends AppCompatActivity implements View.OnClickLi
                     //此处处理登录成功后的信息
                     //1.跳转到主界面
                     Intent intent = new Intent(LoginUpActivity.this, MainActivity.class);
+                    intent.putExtra("loginState",true);
+                    intent.putExtra("isHasLeftFragment",true);
                     startActivity(intent);
                     //2.更改侧边栏的信息，显示为登录状态
-
 
                 } else {
                     Toast.makeText(LoginUpActivity.this, "登录失败，请去邮箱激活！", Toast.LENGTH_SHORT).show();

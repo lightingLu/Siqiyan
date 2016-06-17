@@ -2,6 +2,8 @@ package com.example.three.siqiyan.fragment;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import com.example.three.siqiyan.LoginUpActivity;
 import com.example.three.siqiyan.MainActivity;
 import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.pager.ZiXunPager;
+import com.example.three.siqiyan.view.CircleImageView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
@@ -20,7 +23,21 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 public class LeftMenuFragment extends BaseFragment implements View.OnClickListener {
     private RelativeLayout leftHome, leftSuscribe, leftComment, leftPush;//中间的相对布局选项duixiang
     private TextView fastLogin,fastLoginUp;
+    private CircleImageView circleImageView;
+    private ImageView toUserInfo;
+    private LinearLayout lyLoginstate,lyNotLoginstate;
 
+
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    boolean state = false;
     View view;
 
     @Override
@@ -32,6 +49,11 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
         leftPush = (RelativeLayout) view.findViewById(R.id.left_push);
         fastLogin = (TextView) view.findViewById(R.id.fast_login);
         fastLoginUp = (TextView) view.findViewById(R.id.fast_loginup);
+        circleImageView = (CircleImageView) view.findViewById(R.id.first_circleimg);
+        toUserInfo = (ImageView) view .findViewById(R.id.touserinfo);
+        lyLoginstate = (LinearLayout) view.findViewById(R.id.left_login_after);
+        lyNotLoginstate= (LinearLayout) view.findViewById(R.id.left_login_before);
+
         //设置监听事件
         leftHome.setOnClickListener(this);
         leftSuscribe.setOnClickListener(this);
@@ -39,6 +61,7 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
         leftPush.setOnClickListener(this);
         fastLoginUp.setOnClickListener(this);
         fastLogin.setOnClickListener(this);
+        setLoginState();//登录显示状态
         return view;
     }
 
@@ -70,7 +93,12 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
             case R.id.fast_loginup:
                 Intent intent2 = new Intent(mActivity, LoginUpActivity.class);
                 startActivity(intent2);
-//                toggleSlidingMenu();
+                toggleSlidingMenu();
+                break;
+            case R.id.touserinfo:
+
+                break;
+            case R.id.first_circleimg:
                 break;
         }
     }
@@ -89,6 +117,7 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
      */
     private void setCurrentMenuPager(int pos, String title) {
         MainActivity main = (MainActivity) mActivity;
+
         ContentFragment content = main.getContentFragment();
         ZiXunPager pager = content.getZiXunPager();
         pager.setCurrentMenuPager(pos, title);
@@ -101,6 +130,20 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
         MainActivity main = (MainActivity) mActivity;
         SlidingMenu slidemenu = main.getSlidingMenu();
         slidemenu.toggle();//切换状态，显示隐藏，隐藏显示
+    }
+
+    /**
+     * 根据登上成功与否设置侧边栏显示
+      */
+    public void setLoginState(){
+        MainActivity main = (MainActivity) mActivity;
+        if(main.isLoginState()){
+            lyLoginstate.setVisibility(View.VISIBLE);
+            lyNotLoginstate.setVisibility(View.GONE);
+        }else {
+            lyLoginstate.setVisibility(View.GONE);
+            lyNotLoginstate.setVisibility(View.VISIBLE);
+        }
     }
 
 }

@@ -79,6 +79,7 @@ public class ZiXunPager extends BasePager {
         setSlidingMenuEnable(true);//关闭侧边栏
         flContent.removeAllViews();//清除先前的绘图
         addMenuPager();
+
         //获取网络请求接口
         zixunAPI = ZixunAPI.getAPI();
         service = zixunAPI.getService();

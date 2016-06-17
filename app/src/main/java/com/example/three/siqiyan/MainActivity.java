@@ -1,8 +1,11 @@
 package com.example.three.siqiyan;
+
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Window;
 
 import com.example.three.siqiyan.fragment.ContentFragment;
@@ -22,14 +25,22 @@ public class MainActivity extends SlidingFragmentActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    public boolean loginState = false;//登录状态
+    private boolean isHasLeftFrag = false;//LeftFragment是否加载
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //初始化Bomb后端云服务
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        loginState = intent.getBooleanExtra("loginState", false);
+        isHasLeftFrag = intent.getBooleanExtra("isHasLeftFragment", false);
+        //如果侧边栏打开过，设置登录状态
+        if (isHasLeftFrag) {
+            setLoginState(loginState);
+        }
+
         setBehindContentView(R.layout.left_menu);// 设置侧边栏
         SlidingMenu slidingMenu = getSlidingMenu();// 获取侧边栏对象
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);// 设置全屏触摸
@@ -44,7 +55,6 @@ public class MainActivity extends SlidingFragmentActivity {
     private void initFragment() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();// 开启事务
-
         transaction.replace(R.id.fl_left_menu, new LeftMenuFragment(),
                 FRAGMENT_LEFT_MENU);// 用fragment替换framelayout
         transaction.replace(R.id.ly_content, new ContentFragment(),
@@ -59,6 +69,24 @@ public class MainActivity extends SlidingFragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         ContentFragment contentFragment = (ContentFragment) fm.findFragmentByTag(FRAGMENT_CONTENT);
         return contentFragment;
+    }
+
+    /**
+     * 获取leftfragment
+     */
+    public LeftMenuFragment getLeftFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        LeftMenuFragment leftMenuFragment = (LeftMenuFragment) fm.findFragmentByTag(FRAGMENT_LEFT_MENU);
+        return leftMenuFragment;
+    }
+
+    //状态get set
+    public boolean isLoginState() {
+        return loginState;
+    }
+
+    public void setLoginState(boolean loginState) {
+        this.loginState = loginState;
     }
 
     @Override
