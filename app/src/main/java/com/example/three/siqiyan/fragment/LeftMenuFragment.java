@@ -12,6 +12,7 @@ import com.example.three.siqiyan.LoginInActivity;
 import com.example.three.siqiyan.LoginUpActivity;
 import com.example.three.siqiyan.MainActivity;
 import com.example.three.siqiyan.R;
+import com.example.three.siqiyan.UserInfoActivity;
 import com.example.three.siqiyan.pager.ZiXunPager;
 import com.example.three.siqiyan.view.CircleImageView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -61,6 +62,8 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
         leftPush.setOnClickListener(this);
         fastLoginUp.setOnClickListener(this);
         fastLogin.setOnClickListener(this);
+        toUserInfo.setOnClickListener(this);
+        circleImageView.setOnClickListener(this);
         setLoginState();//登录显示状态
         return view;
     }
@@ -93,12 +96,15 @@ public class LeftMenuFragment extends BaseFragment implements View.OnClickListen
             case R.id.fast_loginup:
                 Intent intent2 = new Intent(mActivity, LoginUpActivity.class);
                 startActivity(intent2);
-                toggleSlidingMenu();
+//                toggleSlidingMenu();
                 break;
             case R.id.touserinfo:
-
+                Intent toUserIn = new Intent(mActivity, UserInfoActivity.class);
+                startActivity(toUserIn);
                 break;
             case R.id.first_circleimg:
+                Intent toUserIn2 = new Intent(mActivity, UserInfoActivity.class);
+                startActivity(toUserIn2);
                 break;
         }
     }

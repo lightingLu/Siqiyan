@@ -1,12 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.three.siqiyan.UserInfoActivity">
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/menu_bg_normal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="个人资料"
+            android:textColor="@color/left_menu_item_bg"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/userinfo_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@null"
+            android:src="@mipmap/stock_back" />
+
+        <ImageButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_title"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:src="@mipmap/news_notification"
+            android:visibility="gone" />
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/view_line" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/view_line" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="70dp">
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:hint="头像"
+                android:textSize="16dp"
+                android:layout_marginLeft="20dp"
+              />
+            <com.example.three.siqiyan.view.CircleImageView
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="35dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/g1"
+                app:border_width="1dp"
+                app:border_color="@color/btn_co" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/user_center_arrow"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/view_line" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+            <TextView
+                android:text="用户名"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="20dp"
+                android:textSize="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+               />
+         <TextView
+             android:text="ddssfsfs"
+             android:layout_alignParentRight="true"
+             android:layout_marginTop="20dp"
+             android:textSize="16dp"
+             android:layout_marginRight="35dp"
+             android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/user_center_arrow"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/view_line" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="昵称"
+                android:textSize="16dp"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                android:text="Three"
+                android:layout_marginTop="20dp"
+                android:textSize="16dp"
+                android:layout_marginRight="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/user_center_arrow"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/view_line" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/view_line" />
+        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="退出登录"
+            android:textSize="16dp"
+            android:layout_marginLeft="20dp"
+            />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/user_center_arrow"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/view_line" />
+
+</LinearLayout>
