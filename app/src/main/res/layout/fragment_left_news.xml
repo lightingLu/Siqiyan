@@ -1,12 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:background="@color/left_menu_bg">
+
+            <com.example.three.siqiyan.view.CircleImageView
+                android:id="@+id/first_circleimg"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/g1"
+                app:border_width="2dp"
+                app:border_color="@color/btn_co" />
+            <TextView
+                android:layout_toRightOf="@+id/first_circleimg"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="THREE"
+                android:textColor="@color/view_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginRight="30dp"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/gray_right"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="98dp"
+        android:visibility="gone"
         android:background="@color/left_menu_bg"
         android:orientation="vertical">
 
@@ -243,7 +286,6 @@
                 android:textColor="@color/left_text_color_no" />
 
         </RelativeLayout>
-
     </LinearLayout>
 
 
