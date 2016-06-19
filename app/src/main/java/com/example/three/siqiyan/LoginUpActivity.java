@@ -106,7 +106,6 @@ public class LoginUpActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onSuccess() {
                 if (user.getEmailVerified()) {
-
                     Toast.makeText(LoginUpActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
                     //此处处理登录成功后的信息
                     //1.跳转到主界面
@@ -114,9 +113,8 @@ public class LoginUpActivity extends AppCompatActivity implements View.OnClickLi
                     intent.putExtra("loginState",true);
                     intent.putExtra("isHasLeftFragment",true);
                     startActivity(intent);
-                    clearInfo();
+                    cleanInfo();
                     //2.更改侧边栏的信息，显示为登录状态
-
                 } else {
                     Toast.makeText(LoginUpActivity.this, "登录失败，请去邮箱激活！", Toast.LENGTH_SHORT).show();
                 }
@@ -132,7 +130,7 @@ public class LoginUpActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     //清除用户信息
-    private void clearInfo() {
+    private void cleanInfo() {
         loginupUsername.setText("");
         loginupPassword.setText("");
     }

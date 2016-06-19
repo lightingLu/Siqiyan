@@ -29,7 +29,6 @@
             android:src="@mipmap/stock_back" />
 
         <ImageButton
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/tv_title"
@@ -72,6 +71,7 @@
                 android:layout_marginLeft="20dp"
               />
             <com.example.three.siqiyan.view.CircleImageView
+                android:id="@+id/user_head"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -104,6 +104,7 @@
             android:layout_height="50dp">
             <TextView
                 android:text="用户名"
+                android:id="@+id/user_name"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="20dp"
                 android:textSize="16dp"
@@ -114,6 +115,7 @@
                />
          <TextView
              android:text="ddssfsfs"
+             android:id="@+id/user_nicheng"
              android:layout_alignParentRight="true"
              android:layout_marginTop="20dp"
              android:textSize="16dp"
@@ -184,6 +186,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp">
         <TextView
+            android:id="@+id/user_quit"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
