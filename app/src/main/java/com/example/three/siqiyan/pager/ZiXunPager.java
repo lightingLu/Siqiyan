@@ -3,6 +3,7 @@ package com.example.three.siqiyan.pager;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -31,9 +32,23 @@ import com.example.three.siqiyan.menupager.CommentMenuPager;
 import com.example.three.siqiyan.menupager.HomeMenuPager;
 import com.example.three.siqiyan.menupager.PushMenuPager;
 import com.example.three.siqiyan.menupager.SubscribeMenuPager;
+import com.example.three.siqiyan.utils.FileUtis;
+import com.example.three.siqiyan.utils.Uiutils;
 import com.example.three.siqiyan.view.RefreshLis;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,12 +63,10 @@ import rx.schedulers.Schedulers;
  */
 public class ZiXunPager extends BasePager {
     private ArrayList<BaseMenuDetailPager> pagerList;
-
     private HService service;
     private ZixunAPI zixunAPI;
     private LinearLayout ll;
     private RefreshLis listView;
-
     private ViewPager viewPager;
     private List<NewsInfo.NewslistBean> newslist;//新闻数据
     private List<NewsInfo.TopicBean> topic;//viewpager数据
@@ -79,7 +92,6 @@ public class ZiXunPager extends BasePager {
         setSlidingMenuEnable(true);//关闭侧边栏
         flContent.removeAllViews();//清除先前的绘图
         addMenuPager();
-
         //获取网络请求接口
         zixunAPI = ZixunAPI.getAPI();
         service = zixunAPI.getService();
@@ -104,10 +116,6 @@ public class ZiXunPager extends BasePager {
                     mActivity.startActivity(intent);
                 }
             });
-
-
-
-
     }
 
     /**
@@ -136,6 +144,7 @@ public class ZiXunPager extends BasePager {
      * 请求网络获取数据
      */
     public void getJsonResult() {
+//        loadLocal();
         Observable<NewsInfo> observable = service.getResult();
         observable.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -144,7 +153,6 @@ public class ZiXunPager extends BasePager {
                     public void onCompleted() {
                         Log.v("=======III===", "完成");
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         Toast.makeText(mActivity, "请检查您的网络", Toast.LENGTH_SHORT).show();
@@ -152,8 +160,9 @@ public class ZiXunPager extends BasePager {
 
                     @Override
                     public void onNext(NewsInfo newsInfo) {
-
-                        saveLocal(newsInfo.toString());
+//                      saveLocal(newsInfo);
+//                      System.out.println("+++"+getPath().isDirectory());
+//                      loadLocal();
                         newslist = newsInfo.getNewslist();
                         topic = newsInfo.getTopic();
                         viewPager.setAdapter(new TopAdapter());
@@ -166,7 +175,6 @@ public class ZiXunPager extends BasePager {
                                 //请求互联网数据数据
                                 requestDataFromServer(false);
                             }
-
                             @Override
                             public void onLoadingMore() {
                                 requestDataFromServer(true);
@@ -195,16 +203,61 @@ public class ZiXunPager extends BasePager {
                 });
     }
 
-    /**
-     * 保存数据到本地
-     * @param s
-     */
-    private void saveLocal(String s) {
-
-
-
+    private void loadLocal() {
+        // 如果发现文件已经过期了 就不要再去复用缓存了
+        File dir = FileUtis.getCacheDir();// 获取缓存所在的文件夹
+        ObjectInputStream in=null;
+        BufferedReader br;
+        try {
+            in = new ObjectInputStream(new FileInputStream(dir));
+            try {
+                NewsInfo info = (NewsInfo) in.readObject();
+                System.out.println("aaaaasss"+info.getNewslist());
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * 保存数据到本地
+     *
+     */
+    private void saveLocal(NewsInfo json) {
+        ObjectOutputStream outputStream = null;
+        try {
+            File dir = FileUtis.getCacheDir();
+            outputStream = new ObjectOutputStream(new FileOutputStream(dir));
+            outputStream.writeObject(json);
+            System.out.println("dddddadf");
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }   finally {
+            if (outputStream!=null){
+                try {
+                    outputStream.close();
+                    Log.v("success","dd");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public File getPath(){
+        StringBuilder path = new StringBuilder();
+        File filesDir = Uiutils.getContext().getCacheDir();    //  cache路径  getFileDir file路径
+        path.append(filesDir.getAbsolutePath());// /data/data/com.itheima.googleplay/cache
+        path.append(File.separator);///data/data/com.itheima.googleplay/cache/
+        path.append("cache");
+        File file = new File(path.toString());
+        if (!file.exists() || !file.isDirectory()) {
+            file.mkdirs();// 创建文件夹
+        }
+        return file;
+    }
     /**
      * 模拟向服务器请求数据
      */
@@ -215,9 +268,7 @@ public class ZiXunPager extends BasePager {
                 if(isLoadingMore){//加载下拉刷新的数据
 
                 }else {//加载上拉加载
-
                 }
-
                 //在UI线程更新UI
                 handler.sendEmptyMessage(0);
             };
@@ -286,12 +337,10 @@ public class ZiXunPager extends BasePager {
         public int getCount() {
             return topic.size();
         }
-
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
         }
-
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
@@ -320,7 +369,6 @@ public class ZiXunPager extends BasePager {
                 }
             });
             imageView.setOnTouchListener(new ImageTouchListener());//给imagview设置触摸监听事件，轮播条的触摸监听
-
             return view;
         }
     }

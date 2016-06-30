@@ -20,19 +20,15 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
  * 
  */
 public class BasePager {
-
-	public Activity mActivity;
+	public MainActivity mActivity;
 	public View mRootView;// 布局对象
-
 	public TextView tvTitle;// 标题对象
-
 	public FrameLayout flContent;// 内容
-
 	public ImageButton btnMenu;// 菜单按钮
-
 	public BasePager(Activity activity) {
-		mActivity = activity;
+		mActivity = (MainActivity) activity;
 		initViews();
+		
 	}
 
 	/**
@@ -40,12 +36,10 @@ public class BasePager {
 	 */
 	public void initViews() {
 		mRootView = View.inflate(mActivity, R.layout.base_pager, null);
-
 		tvTitle = (TextView) mRootView.findViewById(R.id.tv_title);
 		flContent = (FrameLayout) mRootView.findViewById(R.id.fl_cc);
 		btnMenu = (ImageButton) mRootView.findViewById(R.id.btn_menu);
 		btnMenu.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				toggleSlidingMenu();
@@ -55,8 +49,7 @@ public class BasePager {
 
 	/**
 	 * 切换SlidingMenu的状态
-	 * 
-	 * @param b
+	 *
 	 */
 	protected void toggleSlidingMenu() {
 		MainActivity mainUi = (MainActivity) mActivity;
@@ -68,7 +61,6 @@ public class BasePager {
 	 * 初始化数据
 	 */
 	public void initData() {
-
 	}
 
 	/**

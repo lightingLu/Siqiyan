@@ -1,5 +1,9 @@
 package com.example.three.siqiyan.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,7 +11,7 @@ import java.util.List;
  * 资讯信息的Javabean
  *
  */
-public class NewsInfo {
+public class NewsInfo implements Parcelable {
 
     /**
      * code : 200
@@ -134,4 +138,41 @@ public class NewsInfo {
             this.topurl = topurl;
         }
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.code);
+        dest.writeString(this.more);
+        dest.writeList(this.newslist);
+        dest.writeList(this.topic);
+    }
+
+    public NewsInfo() {
+    }
+
+    protected NewsInfo(Parcel in) {
+        this.code = in.readInt();
+        this.more = in.readString();
+        this.newslist = new ArrayList<NewslistBean>();
+        in.readList(this.newslist, NewslistBean.class.getClassLoader());
+        this.topic = new ArrayList<TopicBean>();
+        in.readList(this.topic, TopicBean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<NewsInfo> CREATOR = new Parcelable.Creator<NewsInfo>() {
+        @Override
+        public NewsInfo createFromParcel(Parcel source) {
+            return new NewsInfo(source);
+        }
+
+        @Override
+        public NewsInfo[] newArray(int size) {
+            return new NewsInfo[size];
+        }
+    };
 }

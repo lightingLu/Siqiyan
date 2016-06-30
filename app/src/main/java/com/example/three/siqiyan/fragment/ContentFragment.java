@@ -89,7 +89,6 @@ public class ContentFragment extends BaseFragment {
 
     /**
      * 获取咨讯这个pager
-     *
      * @return 资讯页面
      */
     public ZiXunPager getZiXunPager() {
