@@ -11,18 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.three.siqiyan.R;
+
 /**
  * Created by Three on 2016/6/30.
  */
-public class HushenFragment extends Fragment {
-    @Nullable
+public class HushenFragment extends HangqingBaseFragment {
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView text = new TextView(getContext());
-        text.setText("沪深");
-        text.setTextColor(Color.BLUE);
-        text.setTextSize(25);
-        text.setGravity(Gravity.CENTER);
-        return text;
+    public View initViews() {
+        View view  = View.inflate(getContext(), R.layout.h_hushen,null);
+        return view;
     }
 }

@@ -1,12 +1,6 @@
 package com.example.three.siqiyan.fragment;
 
-
 import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,14 +10,14 @@ import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.view.RefreshLis;
 
 /**
- * Created by Three on 2016/6/30.
+ * Created by Three on 2016/7/1.
  */
-public class GuzhiFragment extends HangqingBaseFragment {
+public class GuzhiqihuoFragment extends HangqingBaseFragment {
     private com.example.three.siqiyan.view.RefreshLis listview;
     @Override
     public View initViews() {
-       View view  = View.inflate(getContext(), R.layout.h_guzhi,null);
-        listview = (RefreshLis) view.findViewById(R.id.guzhi_listview);
+        View view  = View.inflate(getContext(), R.layout.h_qihuo,null);
+        listview = (RefreshLis) view.findViewById(R.id.qihuo_listview);
         if (info!=null){
             listview.setAdapter(new MyAdapter());
         }
@@ -33,12 +27,12 @@ public class GuzhiFragment extends HangqingBaseFragment {
 
         @Override
         public int getCount() {
-            return info.getGuzhi().size();
+            return info.getGuzhiqihuo().size();
         }
 
         @Override
         public Object getItem(int i) {
-            return info.getGuzhi().get(i);
+            return info.getGuzhiqihuo().get(i);
         }
 
         @Override
@@ -61,10 +55,10 @@ public class GuzhiFragment extends HangqingBaseFragment {
                 content = view;
                 holder = (ViewHolder) content.getTag();
             }
-            holder.shangLeft.setText(info.getGuzhi().get(i).getName());
-            holder.shangCenter.setText(info.getGuzhi().get(i).getPrice());
-            holder.shangRight.setText(info.getGuzhi().get(i).getUpordown());
-            int state = Integer.parseInt(info.getGuzhi().get(i).getColorstate());
+            holder.shangLeft.setText(info.getGuzhiqihuo().get(i).getName());
+            holder.shangCenter.setText(info.getGuzhiqihuo().get(i).getPrice());
+            holder.shangRight.setText(info.getGuzhiqihuo().get(i).getUpordown());
+            int state = Integer.parseInt(info.getGuzhiqihuo().get(i).getColorstate());
             if (state != 0) {
                 if (state == 1) {
                     holder.shangRight.setBackgroundColor(Color.RED);

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.example.three.siqiyan.R;
 import com.example.three.siqiyan.base.BasePager;
 import com.example.three.siqiyan.fragment.GuzhiFragment;
+import com.example.three.siqiyan.fragment.GuzhiqihuoFragment;
 import com.example.three.siqiyan.fragment.HushenFragment;
 import com.example.three.siqiyan.fragment.ShangpinFragment;
 import com.example.three.siqiyan.fragment.WaihuiFragment;
@@ -37,17 +38,18 @@ public class HangQingPager extends BasePager {
         btnMenu.setVisibility(View.GONE);// 隐藏菜单按钮
         tvTitle.setText("行情");
         setSlidingMenuEnable(false);// 打开侧边栏
+        flContent.removeAllViews();
         View hangqing = View.inflate(mActivity, R.layout.pager_hangqing, null);
 //        Toolbar toolBar= (Toolbar) hangqing.findViewById(R.id.toolBar);
         ViewPager viewPager  = (ViewPager) hangqing.findViewById(R.id.viewPager);
         TabLayout tabs = (TabLayout) hangqing.findViewById(android.R.id.tabs);
         // 向FrameLayout中动态添加布局
-        flContent.removeAllViews();
+
         flContent.addView(hangqing);
         viewPager.setAdapter(new FragmentPagerAdapter(mActivity.getSupportFragmentManager()) {
             @Override
             public int getCount() {
-                return 6;
+                return 7;
             }
             @Override
             public CharSequence getPageTitle(int position) {
@@ -64,6 +66,8 @@ public class HangQingPager extends BasePager {
                         return "股指";
                     case 5:
                         return "债券";
+                    case 6:
+                        return "股指期货";
                     default:
                         return "指数";
                 }
@@ -86,12 +90,15 @@ public class HangQingPager extends BasePager {
                         return new GuzhiFragment();
                     case 5:
                         return new ZhaiquanFragment() ;
+                    case 6:
+                        return new GuzhiqihuoFragment() ;
                     default:
                         return new ShangpinFragment();
                 }
             }
         });
-        viewPager.setCurrentItem(4);
+        viewPager.setOffscreenPageLimit(0);
+        viewPager.setCurrentItem(0);
         tabs.setupWithViewPager(viewPager);
     }
 

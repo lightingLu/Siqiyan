@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginRight="20dp"
+    android:layout_height="80dp">
+    <TextView
+        android:id="@+id/shang_left"
+        android:layout_alignParentLeft="true"
+        android:text="黄金"  android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+    <TextView
+        android:id="@+id/shang_center"
+        android:text="1324.33"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+    <TextView
+        android:layout_alignParentRight="true"
+        android:id="@+id/shang_right"
+        android:text="+0.987%"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:background="@color/colorAccent"
+        android:layout_marginRight="40dp"
+        android:layout_margin="5dp"
+        android:layout_width="70dp"
+        android:layout_height="40dp" />
+</RelativeLayout>

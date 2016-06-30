@@ -5,31 +5,26 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.three.siqiyan.R;
+
 /**
  * Created by Three on 2016/6/30.
  */
-public class ZixuanFragment extends Fragment {
+public class ZixuanFragment extends HangqingBaseFragment {
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        TextView text = new TextView(getContext());
-        text.setText("自选");
-        text.setTextColor(Color.BLUE);
-        text.setTextSize(25);
-        text.setGravity(Gravity.CENTER);
-        return text;
+    public View initViews() {
+        View view  = View.inflate(getContext(), R.layout.h_zixuan,null);
+        if (info!=null){
+            Log.v("hangqing", "shangpinbukong");
+        }
+        return view;
     }
 }
