@@ -35,8 +35,6 @@ public class HangqingAPI {
                 .build();
        hservice = retrofit.create(HanQingService.class);
     }
-
-
     /**
      * 获取service的实例
      * @return
@@ -44,6 +42,5 @@ public class HangqingAPI {
     public HanQingService getservice() {
         return hservice;
     }
-
 
 }

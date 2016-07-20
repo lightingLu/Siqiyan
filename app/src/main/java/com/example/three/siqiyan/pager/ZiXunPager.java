@@ -157,7 +157,6 @@ public class ZiXunPager extends BasePager {
                     public void onError(Throwable e) {
                         Toast.makeText(mActivity, "请检查您的网络", Toast.LENGTH_SHORT).show();
                     }
-
                     @Override
                     public void onNext(NewsInfo newsInfo) {
 //                      saveLocal(newsInfo);

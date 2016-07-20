@@ -33,8 +33,6 @@ public class MePager extends BasePager{
 		View view_me = View.inflate(mActivity, R.layout.me_pager, null);
 		grideView = (GridView) view_me.findViewById(R.id.gride);
 
-
-
 		// 向FrameLayout中动态添加布局
 		flContent.addView(view_me);
 	}
